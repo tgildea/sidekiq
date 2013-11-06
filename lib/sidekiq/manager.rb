@@ -120,7 +120,7 @@ module Sidekiq
     end
 
     def procline(tag)
-      "sidekiq #{Sidekiq::VERSION} #{tag}[#{@busy.size} of #{@count} busy]#{stopped? ? ' stopping' : ''}"
+      "sidekiq #{Sidekiq::VERSION} #{tag}[#{Thread.current.object_id.to_s(36)}] [#{@busy.size} of #{@count} busy]#{stopped? ? ' stopping' : ''}"
     end
 
     private
