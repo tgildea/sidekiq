@@ -28,6 +28,12 @@ module Sidekiq
 
     def initialize(boss)
       @boss = boss
+      $0 = procline
+      after(5) { procline }
+    end
+
+    def procline
+      "sidekiq #{Sidekiq::VERSION} [proccessor TID-#{Thread.current.object_id.to_s(36)}]"
     end
 
     def process(work)
